@@ -13,7 +13,7 @@ import { fileName } from '../../../../../utils/generateFilename';
 import { getInitialValuesPage6 } from '../../../../../utils/initialValues';
 import { ErrorMessage } from '../../../../components/shared/ErrorComponent';
 import { DropDownMultiQuestion } from '../../../../components/shared/DropDownMultiQuestion';
-import { subcategories18k, subcategories18l, subcategories18m, subcategories18n, subcategories18o } from '../../../../../utils/cap1/categoriesp18';
+import { subcategories18k, subcategories18l, subcategories18m, subcategories18n, subcategories18o } from '../../../../../utils/cap1/categoriesp22';
 import { validationSchemaPage8 } from '../../../../../utils/cap1/validationSchemas';
 
 export interface FormValues {

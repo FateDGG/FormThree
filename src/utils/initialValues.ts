@@ -76,23 +76,15 @@ export const getInitialValuesPage5 = () => {
 
 export const getInitialValuesPage6 = () => {
     return {
-        P18a: initialResponses("P18a","5","","18"),
-        P18b: initialResponses("P18b","5","","18"),
-        P18c: initialResponses("P18c","5","","18"),
-        P18d: initialResponses("P18d","5","","18"),
-        P18e: initialResponses("P18e","5","","18"),
-        P18f: initialResponses("P18f","5","","18"),
-        P18g: initialResponses("P18g","5","","18"),
-        P18h: initialResponses("P18h","5","","18"),
-        P18i: initialResponses("P18i","5","","18"),
-        P18j: initialResponses("P18j","5","","18"),
-        P18k: initialResponses("P18k","5","","18"),
-        P18l: initialResponses("P18l","5","","18"),
-        P18m: initialResponses("P18m","5","","18"),
-        P18n: initialResponses("P18n","5","","18"),
-        P18o: initialResponses("P18o","5","","18"),
+        P22a: initialResponses("P22a","5","","22"),
+        P22b: initialResponses("P22b","5","","22"),
+        P22c: initialResponses("P22c","5","","22"),
+        P22d: initialResponses("P22d","5","","22"),
+        P22e: initialResponses("P22e","5","","22"),
+        P22f: initialResponses("P22f","5","","22"),
+        P22g: initialResponses("P22g","5","","22"),
+        P22h: initialResponses("P22h","5","","22"),
     }
-
 }
 
 export const getInitialValuesPage9 = () => {

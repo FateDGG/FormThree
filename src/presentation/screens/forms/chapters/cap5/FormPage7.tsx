@@ -13,15 +13,14 @@ import { fileName } from '../../../../../utils/generateFilename';
 import { getInitialValuesPage6 } from '../../../../../utils/initialValues';
 import { ErrorMessage } from '../../../../components/shared/ErrorComponent';
 import { DropDownMultiQuestion } from '../../../../components/shared/DropDownMultiQuestion';
-import { subcategories18f, subcategories18g, subcategories18h, subcategories18i, subcategories18j } from '../../../../../utils/cap1/categoriesp18';
-import { validationSchemaPage6, validationSchemaPage7 } from '../../../../../utils/cap1/validationSchemas';
+import { DoubleDropdownSubcat } from '../../../../components/shared/DoubleDropdownSubcat';
+import { subcategories22f, subcategories22g, subcategories22h } from '../../../../../utils/cap1/categoriesp22';
+import { validationSchemaPage7 } from '../../../../../utils/cap1/validationSchemas';
 
 export interface FormValues {
-    P18f: FormTemplate;
-    P18g: FormTemplate;
-    P18h: FormTemplate;
-    P18i: FormTemplate;
-    P18j: FormTemplate;
+    P22f: FormTemplate;
+    P22g: FormTemplate;
+    P22h: FormTemplate;
 }
 
 export const FormPage7 = () => {
@@ -41,164 +40,181 @@ export const FormPage7 = () => {
                     <Text style={globalStyles.Title}>Capítulo 5. Conflictividades</Text>
                 </View>
                 <View>
-                    <Text style={globalStyles.Title2}> P18. Del siguiente listado de problemas / desacuerdos / conflictos y disputas ¿Cuáles considera usted que se le presentan con mayor frecuencia a los miembros de su comunidad? </Text>
+                    <Text style={globalStyles.Title2}>
+                        P22.  Del siguiente listado, a partir de su rol (Rector, Coordinador o líder de convivencia escolar), ¿cuáles considera que son las principales barreras de acceso a la justicia que se le presentan a los estudiantes de su establecimiento educativo?
+                    </Text>
                 </View>
 
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchemaPage7}
                     onSubmit={async (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
-                        console.log("Valores antes de guardar:", values);
                         try {
+                            console.log("Datos a guardar en JSON:", values);
                             await saveAllData(`${fileName}.json`, values, finalSurveyId);
-                            console.log("Datos guardados con éxito");
-                        } catch (error) {
-                            console.error("Error al guardar datos:", error);
                         } finally {
                             setSubmitting(false);
                             navigation.navigate('page8' as never);
                         }
                     }}
                 >
-                    {({ handleChange, handleBlur, handleSubmit, values, setFieldValue, setFieldTouched, errors, touched }) => (
+                    {({ handleSubmit, values, setFieldValue, errors, touched }) => (
                         <View>
-                            <DropDownMultiQuestion
-                                questionTitle="P18.6. Problemas relacionados con la vivienda en la que habita o de la que es dueño, o problemas con vecinos por ruidos, malos olores, mascotas, chismes y otros."
-                                subcategoryTitle="P19.6. ¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
-                                subcategories={subcategories18f}
-                                selectedCategory={values.P18f.response[0].idoptresponse}
-                                selectedSubcategories={values.P18f.response[0].responseuser || []}
-                                onCategoryChange={(value) => {
-                                    console.log("Categoría seleccionada P18f:", value);
-                                    setFieldValue('P18f.response[0].idoptresponse', value);
-                                }}
-                                onSubcategoryChange={(value) => {
-                                    console.log("Subcategoría seleccionada P18f:", value);
-                                    setFieldValue('P18f.response[0].responseuser', value);
-                                }}
-                                onSubQuestionChange={(index, subcategoryValue, value) => {
-                                    const updatedResponses = { ...values.P18f.response[0].subQuestion1Responses };
-                                    updatedResponses[subcategoryValue] = updatedResponses[subcategoryValue] || [];
-                                    updatedResponses[subcategoryValue][index] = value;
-                                    setFieldValue('P18f.response[0].subQuestion1Responses', updatedResponses);
-                                }}
-                                selectedSubQuestions={values.P18f.response[0].subQuestion1Responses || {}}
-                                errors={errors.P18f?.response?.[0]}
-                                touched={touched.P18f?.response?.[0]}
-                            />
-                            <ErrorMessage errors={errors} touched={touched} fieldName="P18f" />
 
-                            <DropDownMultiQuestion
-                                questionTitle="P18.7. Problemas relacionados con el entorno o el espacio público, como el daño, deterioro o falta de paraderos, bancas, calles, puentes; invasión, uso indebido del espacio público o perjuicios por la ejecución de obras públicas."
-                                subcategoryTitle="P19.7. ¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
-                                subcategories={subcategories18g}
-                                selectedCategory={values.P18g.response[0].idoptresponse}
-                                selectedSubcategories={values.P18g.response[0].responseuser || []}
+                            <DoubleDropdownSubcat
+                                questionTitle="P22.6. Geográficas"
+                                subcategoryTitle="Seleccione lo que aplica"
+                                subcategories={subcategories22f}
+                                selectedCategory={values.P22f.response[0].idoptresponse}
+                                selectedSubcategories={values.P22f.response[0].responseuser || []}
                                 onCategoryChange={(value) => {
-                                    console.log("Categoría seleccionada P18g:", value);
-                                    setFieldValue('P18g.response[0].idoptresponse', value);
-                                }}
-                                onSubcategoryChange={(value) => {
-                                    console.log("Subcategoría seleccionada P18g:", value);
-                                    setFieldValue('P18g.response[0].responseuser', value);
-                                }}
-                                onSubQuestionChange={(index, subcategoryValue, value) => {
-                                    const updatedResponses = { ...values.P18g.response[0].subQuestion1Responses };
-                                    updatedResponses[subcategoryValue] = updatedResponses[subcategoryValue] || [];
-                                    updatedResponses[subcategoryValue][index] = value;
-                                    setFieldValue('P18g.response[0].subQuestion1Responses', updatedResponses);
-                                }}
-                                selectedSubQuestions={values.P18g.response[0].subQuestion1Responses || {}}
-                                errors={errors.P18g?.response?.[0]}
-                                touched={touched.P18g?.response?.[0]}
-                            />
-                            <ErrorMessage errors={errors} touched={touched} fieldName="P18g" />
+                                    console.log(`P22f: Category changed to: ${value}`);
+                                    setFieldValue('P22f.response[0].idoptresponse', value);
 
-                            <DropDownMultiQuestion
-                                questionTitle="P18.8. Problemas relacionados con la propiedad, uso y tenencia de la tierra como disputas sobre títulos, linderos, registro catastral o extinción de dominio."
-                                subcategoryTitle="P19.8. ¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
-                                subcategories={subcategories18h}
-                                selectedCategory={values.P18h.response[0].idoptresponse}
-                                selectedSubcategories={values.P18h.response[0].responseuser || []}
-                                onCategoryChange={(value) => {
-                                    console.log("Categoría seleccionada P18h:", value);
-                                    setFieldValue('P18h.response[0].idoptresponse', value);
+                                    if (value === "no") {
+                                        setFieldValue('P22f.response[0].responseuser', ["No"]);
+                                    } else {
+                                        setFieldValue('P22f.response[0].responseuser', []);
+                                    }
+                                    console.log(`P22f: Subcategories reset`);
                                 }}
-                                onSubcategoryChange={(value) => {
-                                    console.log("Subcategoría seleccionada P18h:", value);
-                                    setFieldValue('P18h.response[0].responseuser', value);
-                                }}
-                                onSubQuestionChange={(index, subcategoryValue, value) => {
-                                    const updatedResponses = { ...values.P18h.response[0].subQuestion1Responses };
-                                    updatedResponses[subcategoryValue] = updatedResponses[subcategoryValue] || [];
-                                    updatedResponses[subcategoryValue][index] = value;
-                                    setFieldValue('P18h.response[0].subQuestion1Responses', updatedResponses);
-                                }}
-                                selectedSubQuestions={values.P18h.response[0].subQuestion1Responses || {}}
-                                errors={errors.P18h?.response?.[0]}
-                                touched={touched.P18h?.response?.[0]}
-                            />
-                            <ErrorMessage errors={errors} touched={touched} fieldName="P18h" />
+                                onSubcategoryChange={(selectedValues) => {
+                                    console.log(`P22f: Subcategories changed to:`, selectedValues);
 
-                            <DropDownMultiQuestion
-                                questionTitle="P18.9. Problemas relacionados con el medio ambiente o el acceso a recursos comunitarios, como conflictos por el acceso a fuentes de agua, explotación ilegal de recursos ambientales o contaminación."
-                                subcategoryTitle="P19.9. ¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
-                                subcategories={subcategories18i}
-                                selectedCategory={values.P18i.response[0].idoptresponse}
-                                selectedSubcategories={values.P18i.response[0].responseuser || []}
-                                onCategoryChange={(value) => {
-                                    console.log("Categoría seleccionada P18i:", value);
-                                    setFieldValue('P18i.response[0].idoptresponse', value);
-                                }}
-                                onSubcategoryChange={(value) => {
-                                    console.log("Subcategoría seleccionada P18i:", value);
-                                    setFieldValue('P18i.response[0].responseuser', value);
-                                }}
-                                onSubQuestionChange={(index, subcategoryValue, value) => {
-                                    const updatedResponses = { ...values.P18i.response[0].subQuestion1Responses };
-                                    updatedResponses[subcategoryValue] = updatedResponses[subcategoryValue] || [];
-                                    updatedResponses[subcategoryValue][index] = value;
-                                    setFieldValue('P18i.response[0].subQuestion1Responses', updatedResponses);
-                                }}
-                                selectedSubQuestions={values.P18i.response[0].subQuestion1Responses || {}}
-                                errors={errors.P18i?.response?.[0]}
-                                touched={touched.P18i?.response?.[0]}
-                            />
-                            <ErrorMessage errors={errors} touched={touched} fieldName="P18i" />
+                                    const currentResponseUser = values.P22f.response[0].responseuser || [];
+                                    const updatedResponseUser = currentResponseUser.filter(item => selectedValues.includes(item));
 
-                            <DropDownMultiQuestion
-                                questionTitle="P18.10. Problemas relacionados con la prestación de los servicios de salud, pensión, riesgos laborales, como en la asignación de citas, medicamentos, calidad, oportunidad, afiliación, negación, reconocimiento o pago de la mesada pensional."
-                                subcategoryTitle="P19.10. ¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
-                                subcategories={subcategories18j}
-                                selectedCategory={values.P18j.response[0].idoptresponse}
-                                selectedSubcategories={values.P18j.response[0].responseuser || []}
-                                onCategoryChange={(value) => {
-                                    console.log("Categoría seleccionada P18j:", value);
-                                    setFieldValue('P18j.response[0].idoptresponse', value);
+                                    selectedValues.forEach((subValue) => {
+                                        if (!updatedResponseUser.includes(subValue)) {
+                                            updatedResponseUser.push(subValue);
+                                        }
+                                    });
+
+                                    setFieldValue('P22f.response[0].responseuser', updatedResponseUser);
                                 }}
-                                onSubcategoryChange={(value) => {
-                                    console.log("Subcategoría seleccionada P18j:", value);
-                                    setFieldValue('P18j.response[0].responseuser', value);
+                                onTextChange={(text) => {
+                                    console.log(`P22f: Additional text changed to: ${text}`);
+
+                                    const currentResponseUser = values.P22f.response[0].responseuser || [];
+                                    const filteredResponseUser = currentResponseUser.filter(item => item !== values.P22f.response[0].additionalText);
+
+                                    if (text) {
+                                        filteredResponseUser.push(text);
+                                    }
+
+                                    setFieldValue('P22f.response[0].responseuser', filteredResponseUser);
+                                    setFieldValue('P22f.response[0].additionalText', text);
                                 }}
-                                onSubQuestionChange={(index, subcategoryValue, value) => {
-                                    const updatedResponses = { ...values.P18j.response[0].subQuestion1Responses };
-                                    updatedResponses[subcategoryValue] = updatedResponses[subcategoryValue] || [];
-                                    updatedResponses[subcategoryValue][index] = value;
-                                    setFieldValue('P18j.response[0].subQuestion1Responses', updatedResponses);
-                                }}
-                                selectedSubQuestions={values.P18j.response[0].subQuestion1Responses || {}}
-                                errors={errors.P18j?.response?.[0]}
-                                touched={touched.P18j?.response?.[0]}
+                                errors={errors.P22f?.response?.[0]}
+                                touched={touched.P22f?.response?.[0]}
                             />
-                            <ErrorMessage errors={errors} touched={touched} fieldName="P18j" />
+                            <ErrorMessage errors={errors} touched={touched} fieldName="P22f" />
+
+                            <DoubleDropdownSubcat
+                                questionTitle="P22.7. Institucionales"
+                                subcategoryTitle="Seleccione lo que aplica"
+                                subcategories={subcategories22g}
+                                selectedCategory={values.P22g.response[0].idoptresponse}
+                                selectedSubcategories={values.P22g.response[0].responseuser || []}
+                                onCategoryChange={(value) => {
+                                    console.log(`P22g: Category changed to: ${value}`);
+                                    setFieldValue('P22g.response[0].idoptresponse', value);
+
+                                    if (value === "no") {
+                                        setFieldValue('P22g.response[0].responseuser', ["No"]);
+                                    } else {
+                                        setFieldValue('P22g.response[0].responseuser', []);
+                                    }
+                                    console.log(`P22g: Subcategories reset`);
+                                }}
+                                onSubcategoryChange={(selectedValues) => {
+                                    console.log(`P22g: Subcategories changed to:`, selectedValues);
+
+                                    const currentResponseUser = values.P22g.response[0].responseuser || [];
+                                    const updatedResponseUser = currentResponseUser.filter(item => selectedValues.includes(item));
+
+                                    selectedValues.forEach((subValue) => {
+                                        if (!updatedResponseUser.includes(subValue)) {
+                                            updatedResponseUser.push(subValue);
+                                        }
+                                    });
+
+                                    setFieldValue('P22g.response[0].responseuser', updatedResponseUser);
+                                }}
+                                onTextChange={(text) => {
+                                    console.log(`P22g: Additional text changed to: ${text}`);
+
+                                    const currentResponseUser = values.P22g.response[0].responseuser || [];
+                                    const filteredResponseUser = currentResponseUser.filter(item => item !== values.P22g.response[0].additionalText);
+
+                                    if (text) {
+                                        filteredResponseUser.push(text);
+                                    }
+
+                                    setFieldValue('P22g.response[0].responseuser', filteredResponseUser);
+                                    setFieldValue('P22g.response[0].additionalText', text);
+                                }}
+                                errors={errors.P22g?.response?.[0]}
+                                touched={touched.P22g?.response?.[0]}
+                            />
+                            <ErrorMessage errors={errors} touched={touched} fieldName="P22g" />
+
+                            <DoubleDropdownSubcat
+                                questionTitle="P22.8. Tecnológicas"
+                                subcategoryTitle="Seleccione lo que aplica"
+                                subcategories={subcategories22h}
+                                selectedCategory={values.P22h.response[0].idoptresponse}
+                                selectedSubcategories={values.P22h.response[0].responseuser || []}
+                                onCategoryChange={(value) => {
+                                    console.log(`P22h: Category changed to: ${value}`);
+                                    setFieldValue('P22h.response[0].idoptresponse', value);
+
+                                    if (value === "no") {
+                                        setFieldValue('P22h.response[0].responseuser', ["No"]);
+                                    } else {
+                                        setFieldValue('P22h.response[0].responseuser', []);
+                                    }
+                                    console.log(`P22h: Subcategories reset`);
+                                }}
+                                onSubcategoryChange={(selectedValues) => {
+                                    console.log(`P22h: Subcategories changed to:`, selectedValues);
+
+                                    const currentResponseUser = values.P22h.response[0].responseuser || [];
+                                    const updatedResponseUser = currentResponseUser.filter(item => selectedValues.includes(item));
+
+                                    selectedValues.forEach((subValue) => {
+                                        if (!updatedResponseUser.includes(subValue)) {
+                                            updatedResponseUser.push(subValue);
+                                        }
+                                    });
+
+                                    setFieldValue('P22h.response[0].responseuser', updatedResponseUser);
+                                }}
+                                onTextChange={(text) => {
+                                    console.log(`P22h: Additional text changed to: ${text}`);
+
+                                    const currentResponseUser = values.P22h.response[0].responseuser || [];
+                                    const filteredResponseUser = currentResponseUser.filter(item => item !== values.P22h.response[0].additionalText);
+
+                                    if (text) {
+                                        filteredResponseUser.push(text);
+                                    }
+
+                                    setFieldValue('P22h.response[0].responseuser', filteredResponseUser);
+                                    setFieldValue('P22h.response[0].additionalText', text);
+                                }}
+                                errors={errors.P22h?.response?.[0]}
+                                touched={touched.P22h?.response?.[0]}
+                            />
+                            <ErrorMessage errors={errors} touched={touched} fieldName="P22h" />
+
                             <View style={globalStyles.buttonsBanner}>
-                                <Prevcomponent onPrevPressed={() => navigation.navigate('page6' as never)} />
+                                <Prevcomponent onPrevPressed={() => navigation.navigate('page5' as never)} />
                                 <NextComponent onNextPress={handleSubmit} />
                             </View>
                         </View>
                     )}
                 </Formik>
-
 
             </ScrollView>
         </KeyboardAvoidingView>
