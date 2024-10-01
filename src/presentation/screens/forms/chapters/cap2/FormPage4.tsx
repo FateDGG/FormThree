@@ -193,10 +193,13 @@ export const FormPage4 = () => {
                                     console.log('P19 changed to:', label); // Log del cambio en P13
                                     setFieldValue('P19.response[0].responseuser[0]', label);
                                 }}
-                                qTitle="P19. ¿A cuál sector pertenece el Establecimiento Educativo?"
+                                qTitle="P19. ¿Cuántos años de experiencia tiene en este cargo u ocupación? "
                                 opValues={[
-                                    'Oficial',
-                                    'Privado',
+                                    'Menor de 1 año',
+                                    'Entre 1 a 3 años',
+                                    'Entre 4 a 6 años',
+                                    'Entre 7 a 9 años',
+                                    '10 años o mayor',
                                 ]}
                                 />
                                 <ErrorMessage errors={errors} touched={touched} fieldName="P19" />
