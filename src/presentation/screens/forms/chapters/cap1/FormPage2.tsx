@@ -98,43 +98,17 @@ export const FormPage2 = () => {
                 />
                 <ErrorMessage errors={errors} touched={touched} fieldName="P8" />
 
-                <DoubleDropdownInput
-                categoryTitle="P9. ¿Qué Rol desempeña dentro de su comunidad?"
-                subcategoryTitle="Ingrese una subcategoría:"
-                categories={categories}
-                selectedCategory={values.P9.response[0].idoptresponse} // Asegúrate de que este valor sea correcto
-                selectedSubcategory={values.P9.response[0].responseuser[0]}
-                onCategoryChange={(value) => {
-                  console.log('P9 category changed to:', value);
-                  setFieldValue('P9.response[0].idoptresponse', value); // Mantén idoptresponse como "9"
-
-                  const selectedOption = categories.find(option => option.value === value);
-                  if (selectedOption) {
-                    if (value !== '61') {
-                      setFieldValue('P9.response[0].responseuser[0]', selectedOption.label); // Guardar el label
-                    } else {
-                      setFieldValue('P9.response[0].responseuser[0]', '');// No cambiar responseuser aquí, se hará en onSubcategoryChange
-                    }
-                  }
-                }}
-                onSubcategoryChange={(value) => {
-                  console.log('P9 subcategory changed to:', value);
-                  const currentCategoryValue = values.P9.response[0].idoptresponse;
-                  
-
-                  if (currentCategoryValue === '61') {
-                    setFieldValue('P9.response[0].responseuser[0]', value); // Guardar el texto del input si es '61'
-                  }
-                }}
-                errors={errors.P9?.response?.[0]}
-                touched={touched.P9?.response?.[0]}
-              />
-
-
-
-
-                <ErrorIdMessage errors={errors} touched={touched} fieldName="P9" />
+                <DropDownComponent
+                  values={values.P9.response[0].responseuser}
+                  setFieldValue={(value) => {
+                    console.log('P9 changed to:', value); // Log del cambio en P11
+                    setFieldValue('P9.response[0].responseuser[0]', value);
+                  }}
+                  qTitle='P9. ¿Qué rol desempeña usted dentro del establecimiento educativo?'
+                  opValues={['Rector', 'Coordinador o líder de convivencia escolar']}
+                />
                 <ErrorMessage errors={errors} touched={touched} fieldName="P9" />
+
 
                 <DropDownComponent
                   values={values.P10.response[0].responseuser}
@@ -153,19 +127,19 @@ export const FormPage2 = () => {
                     console.log('P11 changed to:', value); // Log del cambio en P11
                     setFieldValue('P11.response[0].responseuser[0]', value);
                   }}
-                  qTitle='P11. En qué rango de edad se encuentra?'
-                  opValues={['Entre 18 y 25 años', 'Entre 26 y 35 años', 'Entre 36 y 45 años', 'Entre 46 y 55 años', 'Mayor de 56 años']}
+                  qTitle='P11. ¿Cuántas sedes tiene el Establecimiento Educativo en el que usted trabaja? '
+                  opValues={['1', '2', '3', 'Más de 3']}
                 />
                 <ErrorMessage errors={errors} touched={touched} fieldName="P11" />
-
+                
                 <DropDownComponent
                   values={values.P12.response[0].responseuser}
                   setFieldValue={(value) => {
                     console.log('P12 changed to:', value); // Log del cambio en P12
                     setFieldValue('P12.response[0].responseuser[0]', value);
                   }}
-                  qTitle='P12. ¿Cuál es su nivel educativo más alto alcanzado?'
-                  opValues={['Ninguno', 'Preescolar', 'Básica primaria (1-5)', 'Básica secundaria (6-9)', 'Media (10-13)', 'Técnico', 'Tecnólogo', 'Profesional', 'Especialista', 'Magister', 'Doctorado', 'No sabe / No informa']}
+                  qTitle='P12. ¿Cual es su edad?'
+                  opValues={['Entre 18 a 25 años', 'Entre 26 a 35 años', 'Entre 36 a 45 años', 'Entre 46 a 55 años', 'Mayor de 56 años ']}
                 />
                 <ErrorMessage errors={errors} touched={touched} fieldName="P12" />
 

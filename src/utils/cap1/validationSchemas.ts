@@ -63,11 +63,9 @@ export const validationSchemaPage2 = Yup.object().shape({
   P9: Yup.object().shape({
     response: Yup.array().of(
       Yup.object().shape({
-        idoptresponse: Yup.string()
-          .required("Seleccione una categoría")
-          .notOneOf([""], "Seleccionar una Opción válida"),
         responseuser: Yup.array().of(
-          Yup.string().notRequired() // No obligatorio
+          Yup.string().required('Campo obligatorio')
+          .notOneOf([""], "Seleccionar una Opción válida")
         )
       })
     )
@@ -113,6 +111,47 @@ export const validationSchemaPage3 = Yup.object().shape({
   P14: Yup.object().shape({
     response: Yup.array().of(
       Yup.object().shape({
+        responseuser: Yup.array().of(Yup.string().required('Campo obligatorio')
+        .notOneOf([""], "Seleccionar una Opción válida"))
+      })
+    )
+  }),
+});
+export const validationSchemaPage4 = Yup.object().shape({
+  P15: Yup.object().shape({
+    response: Yup.array().of(
+      Yup.object().shape({
+        responseuser: Yup.array().of(Yup.string().required('Campo obligatorio'))
+      })
+    )
+  }),
+  P16: Yup.object().shape({
+    response: Yup.array().of(
+      Yup.object().shape({
+        idoptresponse: Yup.string()
+          .required("Seleccione una categoría")
+          .notOneOf(["16"], "Seleccionar una Opción válida"),
+        responseuser: Yup.array().of(
+          Yup.string().notRequired() // No obligatorio
+        )
+      })
+    )
+  }),
+  P17: Yup.object().shape({
+    response: Yup.array().of(
+      Yup.object().shape({
+        idoptresponse: Yup.string()
+          .required("Seleccione una categoría")
+          .notOneOf(["17"], "Seleccionar una Opción válida"),
+        responseuser: Yup.array().of(
+          Yup.string().notRequired() // No obligatorio
+        )
+      })
+    )
+  }),
+  P18: Yup.object().shape({
+    response: Yup.array().of(
+      Yup.object().shape({
         idoptresponse: Yup.string()
           .required("Seleccione una categoría")
           .notOneOf([""], "Seleccionar una Opción válida"),
@@ -122,64 +161,19 @@ export const validationSchemaPage3 = Yup.object().shape({
       })
     )
   }),
-  P15: Yup.object().shape({
-    response: Yup.array().of(
-      Yup.object().shape({
-        responseuser: Yup.array().of(Yup.string().required('Campo obligatorio')
-        .notOneOf([""], "Seleccionar una Opción válida"))
-      })
-    )
-  }),
-});
-export const validationSchemaPage4 = Yup.object().shape({
-  P16a: Yup.object().shape({
+  P19: Yup.object().shape({
     response: Yup.array().of(
       Yup.object().shape({
         idoptresponse: Yup.string()
           .required("Seleccione una categoría")
-          .notOneOf(["","16"], "Seleccionar una Opción válida"),
+          .notOneOf([""], "Seleccionar una Opción válida"),
         responseuser: Yup.array().of(
           Yup.string().notRequired() // No obligatorio
         )
       })
     )
   }),
-  P16b: Yup.object().shape({
-    response: Yup.array().of(
-      Yup.object().shape({
-        idoptresponse: Yup.string()
-          .required("Seleccione una categoría")
-          .notOneOf(["","16"], "Seleccionar una Opción válida"),
-        responseuser: Yup.array().of(
-          Yup.string().notRequired() // No obligatorio
-        )
-      })
-    )
-  }),
-  P16c: Yup.object().shape({
-    response: Yup.array().of(
-      Yup.object().shape({
-        idoptresponse: Yup.string()
-          .required("Seleccione una categoría")
-          .notOneOf(["","16"], "Seleccionar una Opción válida"),
-        responseuser: Yup.array().of(
-          Yup.string().notRequired() // No obligatorio
-        )
-      })
-    )
-  }),
-  P16d: Yup.object().shape({
-    response: Yup.array().of(
-      Yup.object().shape({
-        idoptresponse: Yup.string()
-          .required("Seleccione una categoría")
-          .notOneOf(["s","16"], "Seleccionar una Opción válida"),
-        responseuser: Yup.array().of(
-          Yup.string().notRequired() // No obligatorio
-        )
-      })
-    )
-  }),
+  
 });
 export const validationSchemaPage5 = Yup.object().shape({
   P16e: Yup.object().shape({

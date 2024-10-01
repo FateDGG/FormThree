@@ -70,7 +70,7 @@ export const FormPage1 = () => {
                   <ErrorMessage errors={errors} touched={touched} fieldName="P1" />
                 <InputComponent
                   info='P2'
-                  textTitle='P2. Nombre de la comunidad que representa:'
+                  textTitle='P2. Nombre del Establecimiento Educativo del cual es funcionario:'
                   handleChange={(value: string) => setFieldValue('P2.response[0].responseuser[0]', value)}
                   handleBlur={() => setFieldTouched('P2.response[0].responseuser[0]')}
                   values={values.P2.response[0].responseuser}

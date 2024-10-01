@@ -20,7 +20,6 @@ import { validationSchemaPage3 } from '../../../../../utils/cap1/validationSchem
 export interface FormValues {
   P13: FormTemplate;
   P14: FormTemplate;
-  P15: FormTemplate;
 }
 
 export const FormPage3 = () => {
@@ -38,9 +37,7 @@ export const FormPage3 = () => {
       style={{ flex: 1 }}
     >
       <ScrollView contentContainerStyle={globalStyles.FomsContainer}>
-        <View style={globalStyles.CapTitle}>
-          <Text style={globalStyles.Title}>Capítulo 2. Información De la Comunidad</Text>
-        </View>
+
 
         <Formik
           initialValues={initialValues}
@@ -83,7 +80,7 @@ export const FormPage3 = () => {
                     console.log('P13 changed to:', label); // Log del cambio en P13
                     setFieldValue('P13.response[0].responseuser[0]', label);
                   }}
-                  qTitle="P13. De acuerdo con su cultura, pueblo o rasgos físicos... ¿cuál de las siguientes categorías enmarca su comunidad?:"
+                  qTitle="P13. De acuerdo con su cultura, pueblo o rasgos físicos... usted se reconoce como:"
                   opValues={[
                     'Indígena',
                     'Gitano / ROM',
@@ -95,7 +92,7 @@ export const FormPage3 = () => {
                 />
                 <ErrorMessage errors={errors} touched={touched} fieldName="P13" />
 
-                <DoubleDropdownInput
+                {/* <DoubleDropdownInput
                 categoryTitle="P14. ¿Cuál es el tamaño de su comunidad?"
                 subcategoryTitle="Ingrese una subcategoría:"
                 categories={categories}
@@ -145,10 +142,18 @@ export const FormPage3 = () => {
                 />
                 <ErrorMessage errors={errors} touched={touched} fieldName="P14" />
 
-                <ErrorMessage errors={errors} touched={touched} fieldName="P14" />
-
-
+                <ErrorMessage errors={errors} touched={touched} fieldName="P14" /> */}
                 <DropDownComponent
+                  values={values.P14.response[0].responseuser}
+                  setFieldValue={(value) => {
+                    console.log('P14 changed to:', value); // Log del cambio en P12
+                    setFieldValue('P14.response[0].responseuser[0]', value);
+                  }}
+                  qTitle='P14. ¿Cuál es su nivel educativo más alto alcanzado?'
+                  opValues={['Ninguno', 'Preescolar', 'Básica primaria (1-5)', 'Básica secundaria (6-9)', 'Media (10-13)', 'Técnico', 'Tecnólogo', 'Profesional', 'Especialista', 'Magister', 'Doctorado', 'No sabe / No informa']}
+                />
+                <ErrorMessage errors={errors} touched={touched} fieldName="P14" />
+                {/* <DropDownComponent
                   values={values.P15.response[0].responseuser}
                   setFieldValue={(label) => {
                     console.log('P15 changed to:', label); // Log del cambio en P15
@@ -156,7 +161,7 @@ export const FormPage3 = () => {
                   }}
                   qTitle="P15. ¿La comunidad a la que usted pertenece es?"
                   opValues={['Urbana', 'Rural', 'Ambas']}
-                />
+                /> */}
                 <ErrorMessage errors={errors} touched={touched} fieldName="P15" />
                 <View style={globalStyles.buttonsBanner}>
                   <Prevcomponent onPrevPressed={() => {
