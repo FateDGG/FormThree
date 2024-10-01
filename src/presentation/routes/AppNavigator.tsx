@@ -5,7 +5,7 @@ import { FormPage1 } from '../screens/forms/chapters/cap1/FormPage1';
 import { FormPage2 } from '../screens/forms/chapters/cap1/FormPage2';
 import { FormPage3 } from '../screens/forms/chapters/cap1/FormPage3';
 import { FormPage4 } from '../screens/forms/chapters/cap2/FormPage4';
-import { FormPage5 } from '../screens/forms/chapters/cap3/FormPage5';
+import { FormPage5 } from '../screens/forms/chapters/cap2/FormPage5';
 import { FormPage6 } from '../screens/forms/chapters/cap5/FormPage6';
 import { FormPage7 } from '../screens/forms/chapters/cap5/FormPage7';
 import { FormPage8 } from '../screens/forms/chapters/cap5/FormPage8';
