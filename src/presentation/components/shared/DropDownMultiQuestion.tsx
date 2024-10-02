@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import CheckBox from '@react-native-community/checkbox';
 import { globalStyles } from '../../theme/theme';
@@ -35,10 +35,8 @@ export const DropDownMultiQuestion = ({
   const handleCategoryChange = (value: string) => {
     onCategoryChange(value);
     if (value === 'no') {
-      // Set responseuser to "No" when "No" is selected
       onSubcategoryChange(['No']);
     } else {
-      // Clear subcategories if "Yes" is selected
       onSubcategoryChange([]);
     }
   };
@@ -52,28 +50,24 @@ export const DropDownMultiQuestion = ({
   };
 
   const questionTitles = [
-    'Frente a este problema ¿cuál es la acción que con más frecuencia adoptan los miembros de su comunidad?',
-    '¿En qué zonas del municipio considera usted que se presenta este tipo de problema o conflicto?',
-    'P22. Sobre este problema ¿es común que la jurisdicción ordinaria o la justicia estatal reclame competencia?',
-    'P23. ¿El problema se solucionó?',
+    'P26. ¿En qué zonas del municipio considera usted que se presenta este tipo de problema o conflicto?',
+    'P27. ¿Existe alguna ruta o protocolo por parte del establecimiento educativo para el manejo de este tipo de problema o conflicto?',
+    'P28. Existe material pedagógico para comunicar la ruta o protocolo que debe seguir el estudiante para atender su caso?',
+    'P29. Mensualmente, Cuantos casos de este tipo de problema o conflicto, tiene conocimiento el establecimiento educativo?',
   ];
 
   const getOptionsForQuestion = (questionIndex: number) => {
     switch (questionIndex) {
       case 0:
         return [
-          { label: 'Acuden a la justicia propia de su comunidad', value: 'Acuden a la justicia propia de su comunidad' },
-          { label: 'Acuden a una institución, autoridad o persona particular', value: 'Acuden a una institución, autoridad o persona particular' },
-          { label: 'Intentó llegar a un acuerdo directamente con quien tuvo el problema', value: 'Intentó llegar a un acuerdo directamente con quien tuvo el problema' },
-          { label: 'Actuó de forma violenta', value: 'Actuó de forma violenta' },
-          { label: 'Acudió a un actor ilegal', value: 'Acudió a un actor ilegal' },
-          { label: 'No hizo nada', value: 'No hizo nada' }
-        ];
-      case 1:
-        return [
           { label: 'Urbano', value: 'Urbano' },
           { label: 'Rural', value: 'Rural' },
           { label: 'Ambas', value: 'Ambas' }
+        ];
+      case 1:
+        return [
+          { label: 'Sí', value: 'Sí' },
+          { label: 'No', value: 'No' }
         ];
       case 2:
         return [
@@ -88,7 +82,6 @@ export const DropDownMultiQuestion = ({
       default:
         return [{ label: 'Opción por defecto', value: 'Opción por defecto' }];
     }
-    
   };
 
   return (
@@ -97,7 +90,7 @@ export const DropDownMultiQuestion = ({
       <View style={globalStyles.picker}>
         <Picker
           selectedValue={selectedCategory}
-          onValueChange={handleCategoryChange} // Updated to use handleCategoryChange
+          onValueChange={handleCategoryChange}
         >
           <Picker.Item label="Seleccione una opción" value="" />
           <Picker.Item label="Sí" value="yes" />
@@ -124,22 +117,70 @@ export const DropDownMultiQuestion = ({
             selectedSubcategories.includes(subcategory.value) && (
               <View key={subcategory.value}>
                 <Text style={globalStyles.Title2}>Subpreguntas para {subcategory.label}</Text>
-                {Array.from({ length: 4 }, (_, index) => (
-                  <View key={index}>
+                
+                {/* Primera sub-pregunta */}
+                <View>
+                  <Text style={globalStyles.questionTitle}>
+                    {questionTitles[0]}
+                  </Text>
+                  <Picker
+                    selectedValue={selectedSubQuestions[subcategory.value]?.[0] || ''}
+                    onValueChange={(value: string) => onSubQuestionChange(0, subcategory.value, value)}
+                  >
+                    <Picker.Item label={`Seleccione una opción`} value="" />
+                    {getOptionsForQuestion(0).map(option => (
+                      <Picker.Item key={option.value} label={option.label} value={option.value} />
+                    ))}
+                  </Picker>
+                </View>
+
+                {/* Segunda sub-pregunta */}
+                <View>
+                  <Text style={globalStyles.questionTitle}>
+                    {questionTitles[1]}
+                  </Text>
+                  <Picker
+                    selectedValue={selectedSubQuestions[subcategory.value]?.[1] || ''}
+                    onValueChange={(value: string) => onSubQuestionChange(1, subcategory.value, value)}
+                  >
+                    <Picker.Item label={`Seleccione una opción`} value="" />
+                    {getOptionsForQuestion(1).map(option => (
+                      <Picker.Item key={option.value} label={option.label} value={option.value} />
+                    ))}
+                  </Picker>
+                </View>
+
+                {/* Mostrar tercera sub-pregunta si se selecciona "Sí" */}
+                {selectedSubQuestions[subcategory.value]?.[1] === 'Sí' && (
+                  <View>
                     <Text style={globalStyles.questionTitle}>
-                      {questionTitles[index]}
+                      {questionTitles[2]}
                     </Text>
                     <Picker
-                      selectedValue={selectedSubQuestions[subcategory.value]?.[index] || ''}
-                      onValueChange={(value: string) => onSubQuestionChange(index, subcategory.value, value)}
+                      selectedValue={selectedSubQuestions[subcategory.value]?.[2] || ''}
+                      onValueChange={(value: string) => onSubQuestionChange(2, subcategory.value, value)}
                     >
-                      <Picker.Item label={`Seleccione una opción para`} value="" />
-                      {getOptionsForQuestion(index).map(option => (
+                      <Picker.Item label={`Seleccione una opción`} value="" />
+                      {getOptionsForQuestion(2).map(option => (
                         <Picker.Item key={option.value} label={option.label} value={option.value} />
                       ))}
                     </Picker>
                   </View>
-                ))}
+                )}
+
+                {/* Cuarta sub-pregunta (TextInput) siempre visible */}
+                <View>
+                  <Text style={globalStyles.questionTitle}>
+                    {questionTitles[3]}
+                  </Text>
+                  <TextInput
+                    style={globalStyles.input}
+                    value={selectedSubQuestions[subcategory.value]?.[3] || ''}
+                    onChangeText={(value: string) => onSubQuestionChange(3, subcategory.value, value)}
+                    placeholder="Escriba su respuesta aquí"
+                  />
+                </View>
+
               </View>
             )
           ))}

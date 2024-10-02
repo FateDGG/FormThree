@@ -87,6 +87,17 @@ export const getInitialValuesPage6 = () => {
     }
 }
 
+export const getInitialValuesPage8 = () => {
+    return {
+        P24a: initialResponses("P24","5","","24"),
+        P24b: initialResponses("P24","5","","24"),
+        P24c: initialResponses("P24","5","","24"),
+        P24d: initialResponses("P24","5","","24"),
+        P24e: initialResponses("P24","5","","24"),
+    }
+
+}
+
 export const getInitialValuesPage9 = () => {
     return {
         P24: initialResponses("P24","5","","24"),

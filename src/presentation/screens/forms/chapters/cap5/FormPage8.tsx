@@ -10,18 +10,18 @@ import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { FormTemplate } from '../../../../../utils/FormInterfaces';
 import { fileName } from '../../../../../utils/generateFilename';
-import { getInitialValuesPage6 } from '../../../../../utils/initialValues';
+import { getInitialValuesPage8 } from '../../../../../utils/initialValues';
 import { ErrorMessage } from '../../../../components/shared/ErrorComponent';
 import { DropDownMultiQuestion } from '../../../../components/shared/DropDownMultiQuestion';
-import { subcategories18k, subcategories18l, subcategories18m, subcategories18n, subcategories18o } from '../../../../../utils/cap1/categoriesp22';
+import { subcategories24a, subcategories24b, subcategories24c, subcategories24d, subcategories24e } from '../../../../../utils/cap1/categoriesp24';
 import { validationSchemaPage8 } from '../../../../../utils/cap1/validationSchemas';
 
 export interface FormValues {
-    P18k: FormTemplate;
-    P18l: FormTemplate;
-    P18m: FormTemplate;
-    P18n: FormTemplate;
-    P18o: FormTemplate;
+    P24a: FormTemplate;
+    P24b: FormTemplate;
+    P24c: FormTemplate;
+    P24d: FormTemplate;
+    P24e: FormTemplate;
 }
 
 export const FormPage8 = () => {
@@ -29,7 +29,7 @@ export const FormPage8 = () => {
     const { saveAllData } = UseSaveData();
     const { surveyId } = useContext(SurveyContext);
     const finalSurveyId = surveyId ?? "defaultSurveyId";
-    const initialValues: FormValues = getInitialValuesPage6();
+    const initialValues: FormValues = getInitialValuesPage8();
 
     return (
         <KeyboardAvoidingView
@@ -42,7 +42,7 @@ export const FormPage8 = () => {
                 </View>
                 <View>
                     <Text style={globalStyles.Title2}>
-                        P18. Del siguiente listado de problemas / desacuerdos / conflictos y disputas ¿Cuáles considera usted que se le presentan con mayor frecuencia a los miembros de su comunidad?
+                        P24. 	Del siguiente listado de problemas / desacuerdos / conflictos y disputas ¿Cuáles considera usted que se presentan con mayor frecuencia a los estudiantes del Establecimiento Educativo?
                     </Text>
                 </View>
 
@@ -65,134 +65,185 @@ export const FormPage8 = () => {
                     {({ handleChange, handleBlur, handleSubmit, values, setFieldValue, setFieldTouched, errors, touched }) => (
                         <View>
                             <DropDownMultiQuestion
-                                questionTitle="P18.11. Problemas en su relación con el Estado, referentes a multas, comparendos, pago de impuestos, expropiaciones, deficiencia en los servicios prestados, abuso de autoridad por policía y ejército o trámites de migrantes."
-                                subcategoryTitle="P19.11. ¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
-                                subcategories={subcategories18k}  // Lista de subcategorías
-                                selectedCategory={values.P18k.response[0].idoptresponse}
-                                selectedSubcategories={values.P18k.response[0].responseuser || []}
+                                questionTitle="P24.1. Problemas relacionados con familiares como separación o divorcio, paternidad / maternidad o recursos insuficientes para la crianza. "
+                                subcategoryTitle="¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
+                                subcategories={subcategories24a}
+                                selectedCategory={values.P24a.response[0].idoptresponse}
+                                selectedSubcategories={values.P24a.response[0].responseuser || []}
                                 onCategoryChange={(value) => {
-                                    console.log("Categoría seleccionada P18k:", value);
-                                    setFieldValue('P18k.response[0].idoptresponse', value);
+                                    console.log("Categoría seleccionada P24a:", value);
+                                    setFieldValue('P24a.response[0].idoptresponse', value);
                                 }}
                                 onSubcategoryChange={(value) => {
-                                    console.log("Subcategoría seleccionada P18k:", value);
-                                    setFieldValue('P18k.response[0].responseuser', value);
+                                    console.log("Subcategoría seleccionada P24a:", value);
+                                    setFieldValue('P24a.response[0].responseuser', value);
                                 }}
                                 onSubQuestionChange={(index, subcategoryValue, value) => {
-                                    const updatedResponses = { ...values.P18k.response[0].subQuestion1Responses };
+                                    const updatedResponses = { ...values.P24a.response[0].subQuestion1Responses };
                                     updatedResponses[subcategoryValue] = updatedResponses[subcategoryValue] || [];
-                                    updatedResponses[subcategoryValue][index] = value;
-                                    setFieldValue('P18k.response[0].subQuestion1Responses', updatedResponses);
+
+                                    if (index === 2 && updatedResponses[subcategoryValue][1] === 'No') {
+                                        updatedResponses[subcategoryValue][index] = "";
+                                    } else {
+                                        updatedResponses[subcategoryValue][index] = value;
+                                    }
+
+                                    if (index === 3) {
+                                        updatedResponses[subcategoryValue][index] = value;
+                                    }
+
+                                    setFieldValue('P24a.response[0].subQuestion1Responses', updatedResponses);
                                 }}
-                                selectedSubQuestions={values.P18k.response[0].subQuestion1Responses || {}} // Inicializa con respuestas vacías
-                                errors={errors.P18k?.response?.[0]}
-                                touched={touched.P18k?.response?.[0]}
+                                selectedSubQuestions={values.P24a.response[0].subQuestion1Responses || {}}
+                                errors={errors.P24a?.response?.[0]}
+                                touched={touched.P24a?.response?.[0]}
                             />
-                            <ErrorMessage errors={errors} touched={touched} fieldName="P18k" />
+                            <ErrorMessage errors={errors} touched={touched} fieldName="P24a" />
 
                             <DropDownMultiQuestion
-                                questionTitle="P18.12. Problemas relacionados con el servicio de educación y formación, como el acceso, la calidad, y el ambiente educativo (matoneo)."
-                                subcategoryTitle="P19.12. ¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
-                                subcategories={subcategories18l}  // Lista de subcategorías
-                                selectedCategory={values.P18l.response[0].idoptresponse}
-                                selectedSubcategories={values.P18l.response[0].responseuser || []}
+                                questionTitle="P24.2. Problemas relacionados con el servicio de educación y formación, como el acceso y la calidad. "
+                                subcategoryTitle="¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
+                                subcategories={subcategories24b}
+                                selectedCategory={values.P24b.response[0].idoptresponse}
+                                selectedSubcategories={values.P24b.response[0].responseuser || []}
                                 onCategoryChange={(value) => {
-                                    console.log("Categoría seleccionada P18l:", value);
-                                    setFieldValue('P18l.response[0].idoptresponse', value);
+                                    console.log("Categoría seleccionada P24b:", value);
+                                    setFieldValue('P24b.response[0].idoptresponse', value);
                                 }}
                                 onSubcategoryChange={(value) => {
-                                    console.log("Subcategoría seleccionada P18l:", value);
-                                    setFieldValue('P18l.response[0].responseuser', value);
+                                    console.log("Subcategoría seleccionada P24b:", value);
+                                    setFieldValue('P24b.response[0].responseuser', value);
                                 }}
                                 onSubQuestionChange={(index, subcategoryValue, value) => {
-                                    const updatedResponses = { ...values.P18l.response[0].subQuestion1Responses };
+                                    const updatedResponses = { ...values.P24b.response[0].subQuestion1Responses };
                                     updatedResponses[subcategoryValue] = updatedResponses[subcategoryValue] || [];
-                                    updatedResponses[subcategoryValue][index] = value;
-                                    setFieldValue('P18l.response[0].subQuestion1Responses', updatedResponses);
+
+                                    if (index === 2 && updatedResponses[subcategoryValue][1] === 'No') {
+                                        updatedResponses[subcategoryValue][index] = "";
+                                    } else {
+                                        updatedResponses[subcategoryValue][index] = value;
+                                    }
+
+                                    if (index === 3) {
+                                        updatedResponses[subcategoryValue][index] = value;
+                                    }
+
+                                    setFieldValue('P24b.response[0].subQuestion1Responses', updatedResponses);
                                 }}
-                                selectedSubQuestions={values.P18l.response[0].subQuestion1Responses || {}} // Inicializa con respuestas vacías
-                                errors={errors.P18l?.response?.[0]}
-                                touched={touched.P18l?.response?.[0]}
+                                selectedSubQuestions={values.P24b.response[0].subQuestion1Responses || {}}
+                                errors={errors.P24b?.response?.[0]}
+                                touched={touched.P24b?.response?.[0]}
                             />
-                            <ErrorMessage errors={errors} touched={touched} fieldName="P18l" />
+                            <ErrorMessage errors={errors} touched={touched} fieldName="P24b" />
 
                             <DropDownMultiQuestion
-                                questionTitle="P18.13. Problemas relacionados con afectaciones, daños o perjuicios causados o derivados de delitos, como hurto, lesiones, calumnias, daños a la propiedad, secuestro, homicidio, ciberdelito, violencia sexual y violencia intrafamiliar."
-                                subcategoryTitle="P19.13. ¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
-                                subcategories={subcategories18m}  // Lista de subcategorías
-                                selectedCategory={values.P18m.response[0].idoptresponse}
-                                selectedSubcategories={values.P18m.response[0].responseuser || []}
+                                questionTitle="P24.3. Problemas relacionados con afectaciones, daños o perjuicios causados o derivados de delitos, como hurto, lesiones, calumnias, daños a la propiedad, secuestro, homicidio, ciberdelito, violencia sexual y violencia intrafamiliar."
+                                subcategoryTitle="¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
+                                subcategories={subcategories24c}
+                                selectedCategory={values.P24c.response[0].idoptresponse}
+                                selectedSubcategories={values.P24c.response[0].responseuser || []}
                                 onCategoryChange={(value) => {
-                                    console.log("Categoría seleccionada P18m:", value);
-                                    setFieldValue('P18m.response[0].idoptresponse', value);
+                                    console.log("Categoría seleccionada P24c:", value);
+                                    setFieldValue('P24c.response[0].idoptresponse', value);
                                 }}
                                 onSubcategoryChange={(value) => {
-                                    console.log("Subcategoría seleccionada P18m:", value);
-                                    setFieldValue('P18m.response[0].responseuser', value);
+                                    console.log("Subcategoría seleccionada P24c:", value);
+                                    setFieldValue('P24c.response[0].responseuser', value);
                                 }}
                                 onSubQuestionChange={(index, subcategoryValue, value) => {
-                                    const updatedResponses = { ...values.P18m.response[0].subQuestion1Responses };
+                                    const updatedResponses = { ...values.P24c.response[0].subQuestion1Responses };
                                     updatedResponses[subcategoryValue] = updatedResponses[subcategoryValue] || [];
-                                    updatedResponses[subcategoryValue][index] = value;
-                                    setFieldValue('P18m.response[0].subQuestion1Responses', updatedResponses);
+
+                                    if (index === 2 && updatedResponses[subcategoryValue][1] === 'No') {
+                                        updatedResponses[subcategoryValue][index] = "";
+                                    } else {
+                                        updatedResponses[subcategoryValue][index] = value;
+                                    }
+
+                                    if (index === 3) {
+                                        updatedResponses[subcategoryValue][index] = value;
+                                    }
+
+                                    setFieldValue('P24c.response[0].subQuestion1Responses', updatedResponses);
                                 }}
-                                selectedSubQuestions={values.P18m.response[0].subQuestion1Responses || {}} // Inicializa con respuestas vacías
-                                errors={errors.P18m?.response?.[0]}
-                                touched={touched.P18m?.response?.[0]}
+                                selectedSubQuestions={values.P24c.response[0].subQuestion1Responses || {}}
+                                errors={errors.P24c?.response?.[0]}
+                                touched={touched.P24c?.response?.[0]}
                             />
-                            <ErrorMessage errors={errors} touched={touched} fieldName="P18m" />
+                            <ErrorMessage errors={errors} touched={touched} fieldName="P24c" />
 
                             <DropDownMultiQuestion
-                                questionTitle="P18.14. Problemas relacionados con afectaciones, daños o perjuicios causados o derivados del conflicto armado o problemas de orden público como desplazamiento forzado, terrorismo, despojo de tierras, extorsión."
-                                subcategoryTitle="P19.14. ¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
-                                subcategories={subcategories18n}  // Lista de subcategorías
-                                selectedCategory={values.P18n.response[0].idoptresponse}
-                                selectedSubcategories={values.P18n.response[0].responseuser || []}
+                                questionTitle="P24.4. Problemas relacionados con afectaciones, daños o perjuicios causados o derivados de desplazamiento y orden público"
+                                subcategoryTitle="¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
+                                subcategories={subcategories24d}
+                                selectedCategory={values.P24d.response[0].idoptresponse}
+                                selectedSubcategories={values.P24d.response[0].responseuser || []}
                                 onCategoryChange={(value) => {
-                                    console.log("Categoría seleccionada P18n:", value);
-                                    setFieldValue('P18n.response[0].idoptresponse', value);
+                                    console.log("Categoría seleccionada P24d:", value);
+                                    setFieldValue('P24d.response[0].idoptresponse', value);
                                 }}
                                 onSubcategoryChange={(value) => {
-                                    console.log("Subcategoría seleccionada P18n:", value);
-                                    setFieldValue('P18n.response[0].responseuser', value);
+                                    console.log("Subcategoría seleccionada P24d:", value);
+                                    setFieldValue('P24d.response[0].responseuser', value);
                                 }}
                                 onSubQuestionChange={(index, subcategoryValue, value) => {
-                                    const updatedResponses = { ...values.P18n.response[0].subQuestion1Responses };
+                                    const updatedResponses = { ...values.P24d.response[0].subQuestion1Responses };
                                     updatedResponses[subcategoryValue] = updatedResponses[subcategoryValue] || [];
-                                    updatedResponses[subcategoryValue][index] = value;
-                                    setFieldValue('P18n.response[0].subQuestion1Responses', updatedResponses);
+
+                                    if (index === 2 && updatedResponses[subcategoryValue][1] === 'No') {
+                                        updatedResponses[subcategoryValue][index] = "";
+                                    } else {
+                                        updatedResponses[subcategoryValue][index] = value;
+                                    }
+
+                                    if (index === 3) {
+                                        updatedResponses[subcategoryValue][index] = value;
+                                    }
+
+                                    setFieldValue('P24d.response[0].subQuestion1Responses', updatedResponses);
                                 }}
-                                selectedSubQuestions={values.P18n.response[0].subQuestion1Responses || {}} // Inicializa con respuestas vacías
-                                errors={errors.P18n?.response?.[0]}
-                                touched={touched.P18n?.response?.[0]}
+                                selectedSubQuestions={values.P24d.response[0].subQuestion1Responses || {}}
+                                errors={errors.P24d?.response?.[0]}
+                                touched={touched.P24d?.response?.[0]}
                             />
-                            <ErrorMessage errors={errors} touched={touched} fieldName="P18n" />
+                            <ErrorMessage errors={errors} touched={touched} fieldName="P24d" />
 
                             <DropDownMultiQuestion
-                                questionTitle="P18.15. Problemas interculturales"
-                                subcategoryTitle="P19.15. ¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
-                                subcategories={subcategories18o}  // Lista de subcategorías
-                                selectedCategory={values.P18o.response[0].idoptresponse}
-                                selectedSubcategories={values.P18o.response[0].responseuser || []}
+                                questionTitle="P24.5. Problemas relacionados con la convivencia escolar"
+                                subcategoryTitle="¿Cuáles de las siguientes tipologías de problemas afectan con mayor frecuencia a los miembros de su comunidad?"
+                                subcategories={subcategories24e}
+                                selectedCategory={values.P24e.response[0].idoptresponse}
+                                selectedSubcategories={values.P24e.response[0].responseuser || []}
                                 onCategoryChange={(value) => {
-                                    console.log("Categoría seleccionada P18o:", value);
-                                    setFieldValue('P18o.response[0].idoptresponse', value);
+                                    console.log("Categoría seleccionada P24e:", value);
+                                    setFieldValue('P24e.response[0].idoptresponse', value);
                                 }}
                                 onSubcategoryChange={(value) => {
-                                    console.log("Subcategoría seleccionada P18o:", value);
-                                    setFieldValue('P18o.response[0].responseuser', value);
+                                    console.log("Subcategoría seleccionada P24e:", value);
+                                    setFieldValue('P24e.response[0].responseuser', value);
                                 }}
                                 onSubQuestionChange={(index, subcategoryValue, value) => {
-                                    const updatedResponses = { ...values.P18o.response[0].subQuestion1Responses };
+                                    const updatedResponses = { ...values.P24e.response[0].subQuestion1Responses };
                                     updatedResponses[subcategoryValue] = updatedResponses[subcategoryValue] || [];
-                                    updatedResponses[subcategoryValue][index] = value;
-                                    setFieldValue('P18o.response[0].subQuestion1Responses', updatedResponses);
+
+                                    if (index === 2 && updatedResponses[subcategoryValue][1] === 'No') {
+                                        updatedResponses[subcategoryValue][index] = "";
+                                    } else {
+                                        updatedResponses[subcategoryValue][index] = value;
+                                    }
+
+                                    if (index === 3) {
+                                        updatedResponses[subcategoryValue][index] = value;
+                                    }
+
+                                    setFieldValue('P24e.response[0].subQuestion1Responses', updatedResponses);
                                 }}
-                                selectedSubQuestions={values.P18o.response[0].subQuestion1Responses || {}} // Inicializa con respuestas vacías
-                                errors={errors.P18o?.response?.[0]}
-                                touched={touched.P18o?.response?.[0]}
+                                selectedSubQuestions={values.P24e.response[0].subQuestion1Responses || {}}
+                                errors={errors.P24e?.response?.[0]}
+                                touched={touched.P24e?.response?.[0]}
                             />
-                            <ErrorMessage errors={errors} touched={touched} fieldName="P18o" />
+                            <ErrorMessage errors={errors} touched={touched} fieldName="P24e" />
+
                             <View style={globalStyles.buttonsBanner}>
                                 <Prevcomponent onPrevPressed={() => navigation.navigate('page7' as never)} />
                                 <NextComponent onNextPress={handleSubmit} />
