@@ -39,7 +39,7 @@ export const FormPage6 = () => {
         >
             <ScrollView contentContainerStyle={globalStyles.FomsContainer}>
                 <View style={globalStyles.CapTitle}>
-                    <Text style={globalStyles.Title}>Capítulo 5. Conflictividades</Text>
+                    <Text style={globalStyles.Title}>Capítulo 3. Barreras de acceso a la justicia</Text>
                 </View>
                 <View>
                     <Text style={globalStyles.Title2}>

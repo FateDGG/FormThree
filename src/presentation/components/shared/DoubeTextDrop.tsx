@@ -46,6 +46,7 @@ export const YesNoInput = ({
           <Text style={{ color: 'red' }}>{errors.answer}</Text>
         )}
       </View>
+
       {selectedAnswer === 'yes' && (
         <>
           <Text style={globalStyles.questionTitle}>{subQuestion1}</Text>
@@ -58,7 +59,11 @@ export const YesNoInput = ({
           {errors?.answer1 && touched?.answer1 && (
             <Text style={{ color: 'red' }}>{errors.answer1}</Text>
           )}
+        </>
+      )}
 
+      {selectedAnswer === 'no' && (
+        <>
           <Text style={globalStyles.questionTitle}>{subQuestion2}</Text>
           <TextInput
             value={answer2}
