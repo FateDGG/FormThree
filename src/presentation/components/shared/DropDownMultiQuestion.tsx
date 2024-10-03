@@ -108,7 +108,7 @@ export const DropDownMultiQuestion = ({
                 value={selectedSubcategories.includes(subcategory.value)}
                 onValueChange={() => handleCheckboxChange(subcategory.value)}
               />
-              <Text>{subcategory.label}</Text>
+              <Text style={globalStyles.checkboxContainer}>{subcategory.label}</Text>
             </View>
           ))}
           {errors?.subcategory && touched?.subcategory && <Text style={{ color: 'red' }}>{errors.subcategory}</Text>}
