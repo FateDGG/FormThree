@@ -108,7 +108,7 @@ export const DropDownMultiQuestion = ({
                 value={selectedSubcategories.includes(subcategory.value)}
                 onValueChange={() => handleCheckboxChange(subcategory.value)}
               />
-              <Text style={globalStyles.checkboxContainer}>{subcategory.label}</Text>
+              <Text style={globalStyles.checkboxText}>{subcategory.label}</Text>
             </View>
           ))}
           {errors?.subcategory && touched?.subcategory && <Text style={{ color: 'red' }}>{errors.subcategory}</Text>}
@@ -119,11 +119,11 @@ export const DropDownMultiQuestion = ({
                 <Text style={globalStyles.Title2}>Subpreguntas para {subcategory.label}</Text>
                 
                 {/* Primera sub-pregunta */}
-                <View>
+                <View >
                   <Text style={globalStyles.questionTitle}>
                     {questionTitles[0]}
                   </Text>
-                  <Picker
+                  <Picker style={globalStyles.picker}
                     selectedValue={selectedSubQuestions[subcategory.value]?.[0] || ''}
                     onValueChange={(value: string) => onSubQuestionChange(0, subcategory.value, value)}
                   >
@@ -178,6 +178,7 @@ export const DropDownMultiQuestion = ({
                     value={selectedSubQuestions[subcategory.value]?.[3] || ''}
                     onChangeText={(value: string) => onSubQuestionChange(3, subcategory.value, value)}
                     placeholder="Escriba su respuesta aquí"
+                    placeholderTextColor="lightgray"
                   />
                 </View>
 

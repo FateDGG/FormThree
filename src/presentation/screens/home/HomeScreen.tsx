@@ -84,7 +84,7 @@ export const HomeScreen = () => {
     <View style={globalStyles.HomeScreenContainer}>
       <Image
         style={styles.logo}
-        source={require('../../../assets/OIP.jpg')}
+        source={require('../../../assets/OIP.png')}
       />
       <MainButton label='Nueva encuesta' onPress={handleNewSurvey} />
       <MainButton label='Procesar encuestas' onPress={() => navigation.navigate('page1' as never)} />

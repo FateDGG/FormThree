@@ -55,6 +55,7 @@ export const YesNoInput = ({
             onChangeText={onAnswer1Change}
             placeholder="Especifica tu respuesta"
             style={globalStyles.input}
+            placeholderTextColor="lightgray"
           />
           {errors?.answer1 && touched?.answer1 && (
             <Text style={{ color: 'red' }}>{errors.answer1}</Text>
@@ -70,6 +71,7 @@ export const YesNoInput = ({
             onChangeText={onAnswer2Change}
             placeholder="Especifica tu respuesta"
             style={globalStyles.input}
+            placeholderTextColor="lightgray"
           />
           {errors?.answer2 && touched?.answer2 && (
             <Text style={{ color: 'red' }}>{errors.answer2}</Text>
