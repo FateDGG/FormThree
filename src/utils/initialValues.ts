@@ -81,6 +81,11 @@ export const getInitialValuesPage6 = () => {
         P22c: initialResponses("P22c","5","","22"),
         P22d: initialResponses("P22d","5","","22"),
         P22e: initialResponses("P22e","5","","22"),
+
+    }
+}
+export const getInitialValuesPage7 = () => {
+    return {
         P22f: initialResponses("P22f","5","","22"),
         P22g: initialResponses("P22g","5","","22"),
         P22h: initialResponses("P22h","5","","22"),

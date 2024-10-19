@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { FormTemplate } from '../../../../../utils/FormInterfaces';
 import { fileName } from '../../../../../utils/generateFilename';
-import { getInitialValuesPage6 } from '../../../../../utils/initialValues';
+import { getInitialValuesPage6, getInitialValuesPage7 } from '../../../../../utils/initialValues';
 import { ErrorMessage } from '../../../../components/shared/ErrorComponent';
 import { DropDownMultiQuestion } from '../../../../components/shared/DropDownMultiQuestion';
 import { DoubleDropdownSubcat } from '../../../../components/shared/DoubleDropdownSubcat';
@@ -28,7 +28,7 @@ export const FormPage7 = () => {
     const { saveAllData } = UseSaveData();
     const { surveyId } = useContext(SurveyContext);
     const finalSurveyId = surveyId ?? "defaultSurveyId";
-    const initialValues: FormValues = getInitialValuesPage6();
+    const initialValues: FormValues = getInitialValuesPage7();
 
     return (
         <KeyboardAvoidingView
