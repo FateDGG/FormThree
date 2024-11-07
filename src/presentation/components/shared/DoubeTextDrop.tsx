@@ -52,7 +52,7 @@ export const YesNoInput = ({
           <Text style={globalStyles.questionTitle}>{subQuestion1}</Text>
           <TextInput
             value={answer1}
-            onChangeText={onAnswer1Change}
+            onChangeText={(text) => onAnswer1Change(text.replace(/[0-9]/g, ''))} // Remueve números
             placeholder="Especifica tu respuesta"
             style={globalStyles.input}
             placeholderTextColor="lightgray"
@@ -68,7 +68,7 @@ export const YesNoInput = ({
           <Text style={globalStyles.questionTitle}>{subQuestion2}</Text>
           <TextInput
             value={answer2}
-            onChangeText={onAnswer2Change}
+            onChangeText={(text) => onAnswer2Change(text.replace(/[0-9]/g, ''))} // Remueve números
             placeholder="Especifica tu respuesta"
             style={globalStyles.input}
             placeholderTextColor="lightgray"

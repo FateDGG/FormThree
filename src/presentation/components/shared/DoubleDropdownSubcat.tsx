@@ -38,6 +38,13 @@ export const DoubleDropdownSubcat = ({
     onSubcategoryChange(newSelectedSubcategories);
   };
 
+  // Nueva función para manejar el cambio de texto, filtrando números
+  const handleTextInputChange = (text: string) => {
+    // Filtramos los números del texto ingresado solo si el campo de texto está visible
+    const filteredText = text.replace(/[0-9]/g, ''); // Remueve cualquier número
+    onTextChange && onTextChange(filteredText);
+  };
+
   return (
     <View>
       <Text style={globalStyles.questionTitle}>{questionTitle}</Text>
@@ -75,7 +82,7 @@ export const DoubleDropdownSubcat = ({
           {selectedSubcategories.includes(specificSubcategoryValue) && (
             <View>
               <TextInput
-                onChangeText={onTextChange}
+                onChangeText={handleTextInputChange}  // Usamos la función filtrada
                 placeholder="Especifica tu respuesta"
                 style={globalStyles.input}
                 placeholderTextColor="lightgray"

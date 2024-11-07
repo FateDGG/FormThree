@@ -44,7 +44,9 @@ export const FormPage4 = () => {
                 <View style={globalStyles.CapTitle}>
                     <Text style={globalStyles.Title}>Capítulo 2. Información del Establecimiento Educativo</Text>
                 </View>
-
+                <View>
+                    <Text style={{ color: '#f89d30', fontWeight: 'bold' }}>El objetivo de este capítulo es conocer las características del cargo, vinculación y la experiencia.</Text>
+                </View>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchemaPage4}

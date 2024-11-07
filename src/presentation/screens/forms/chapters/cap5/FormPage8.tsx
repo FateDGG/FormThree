@@ -41,6 +41,9 @@ export const FormPage8 = () => {
                     <Text style={globalStyles.Title}>Capítulo 5. Conflictividades</Text>
                 </View>
                 <View>
+                    <Text style={{ color: '#f89d30', fontWeight: 'bold' }}>El objetivo de este capítulo es identificar los problemas / desacuerdos / conflictos y disputas que con mayor frecuencia atiende el sistema de justicia local, así como conocer sobre las Rutas y/o protocolos de atención.</Text>
+                </View>
+                <View>
                     <Text style={globalStyles.Title2}>
                         P24. 	Del siguiente listado de problemas / desacuerdos / conflictos y disputas ¿Cuáles considera usted que se presentan con mayor frecuencia a los estudiantes del Establecimiento Educativo?
                     </Text>

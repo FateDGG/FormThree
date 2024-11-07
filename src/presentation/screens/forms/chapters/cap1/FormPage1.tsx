@@ -3,6 +3,7 @@ import { Alert, Button, KeyboardAvoidingView, Platform, Text, View } from 'react
 import { globalStyles } from '../../../../theme/theme'
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 import { InputComponent } from '../../../../components/shared/InputComponent';
+import { NumericInputComponent } from '../../../../components/shared/NumericInputComponent';
 import { ScrollView } from 'react-native-gesture-handler';
 import { NextComponent } from '../../../../components/shared/NextComponent';
 import { useNavigation } from '@react-navigation/native'
@@ -13,6 +14,7 @@ import { fileName } from '../../../../../utils/generateFilename';
 import { FormTemplate } from '../../../../../utils/FormInterfaces';
 import { getInitialValuesPage1 } from '../../../../../utils/initialValues';
 import { ErrorMessage } from '../../../../components/shared/ErrorComponent';
+import { EmailInputComponent } from '../../../../components/shared/EmailInputComponent';
 getInitialValuesPage1
 
 
@@ -41,6 +43,9 @@ export const FormPage1 = () => {
       <ScrollView contentContainerStyle={globalStyles.FomsContainer}>
         <View style={globalStyles.CapTitle}>
           <Text style={globalStyles.Title}>Capítulo 1.  Características sociodemográficas del encuestado</Text>
+        </View>
+        <View>
+          <Text style={{ color: '#f89d30', fontWeight: 'bold' }}>El objetivo de este capítulo es obtener información sobre los aspectos sociodemográficos del actor / operador de justicia.</Text>
         </View>
         <Formik
           initialValues={initialValues}
@@ -76,7 +81,7 @@ export const FormPage1 = () => {
                   values={values.P2.response[0].responseuser}
                 />
                   <ErrorMessage errors={errors} touched={touched} fieldName="P2" />
-                <InputComponent
+                <NumericInputComponent
                   info='P3'
                   textTitle='P3. Número de celular:'
                   handleChange={(value: string) => setFieldValue('P3.response[0].responseuser[0]', value)}
@@ -84,7 +89,7 @@ export const FormPage1 = () => {
                   values={values.P3.response[0].responseuser}
                 />
                   <ErrorMessage errors={errors} touched={touched} fieldName="P3" />
-                <InputComponent
+                <EmailInputComponent
                   info='P4'
                   textTitle='P4. Correo electrónico:'
                   handleChange={(value: string) => setFieldValue('P4.response[0].responseuser[0]', value)}
@@ -100,7 +105,7 @@ export const FormPage1 = () => {
                   values={values.P5.response[0].responseuser}
                 />
                   <ErrorMessage errors={errors} touched={touched} fieldName="P5" />
-                <InputComponent
+                <NumericInputComponent
                   info='P6'
                   textTitle='P6. Código departamento:'
                   handleChange={(value: string) => setFieldValue('P6.response[0].responseuser[0]', value)}

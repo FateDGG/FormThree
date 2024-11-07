@@ -58,6 +58,9 @@ export const FormPage10 = () => {
                 <View style={globalStyles.CapTitle}>
                     <Text style={globalStyles.Title}>Información del Encuestador</Text>
                 </View>
+                <View>
+                    <Text style={{ color: '#f89d30', fontWeight: 'bold' }}>El objetivo de esta sección es obtener el nombre del encuestador y aspectos de fecha, hora y novedad derivada de la aplicación de la encuesta.</Text>
+                </View>
 
                 <Formik
                     initialValues={initialValues}
@@ -80,7 +83,7 @@ export const FormPage10 = () => {
                             {/* A1 Input */}
                             <InputComponent
                                 info='A1' 
-                                textTitle='A1. ¿Por qué no existen esas alianzas o protocolos de coordinación?'
+                                textTitle='A1. Nombre completo del encuestador:'
                                 handleChange={(value: string) => {
                                     console.log('A1 answer changed to:', value);
                                     setFieldValue('A1.response[0].responseuser[0]', value);

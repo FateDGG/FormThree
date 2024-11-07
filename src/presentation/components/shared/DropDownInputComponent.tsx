@@ -36,6 +36,12 @@ export const DoubleDropdownInput = ({
     }
   };
 
+  const handleTextChange = (text: string) => {
+    // Filtra los números del texto ingresado
+    const filteredText = text.replace(/[0-9]/g, '');
+    onSubcategoryChange(filteredText); // Actualiza solo con texto sin números
+  };
+
   return (
     <View>
       <Text style={globalStyles.questionTitle}>{categoryTitle}</Text>
@@ -76,7 +82,7 @@ export const DoubleDropdownInput = ({
           <Text style={globalStyles.questionTitle}>{subcategoryTitle}</Text>
           <TextInput
             value={selectedSubcategory}
-            onChangeText={(text) => onSubcategoryChange(text)}
+            onChangeText={handleTextChange}
             placeholder="Especifica tu respuesta"
             style={globalStyles.input}
             placeholderTextColor="lightgray"

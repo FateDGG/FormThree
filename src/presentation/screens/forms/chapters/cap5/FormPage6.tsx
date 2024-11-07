@@ -42,6 +42,12 @@ export const FormPage6 = () => {
                     <Text style={globalStyles.Title}>Capítulo 3. Barreras de acceso a la justicia</Text>
                 </View>
                 <View>
+                    <Text style={{ color: '#f89d30', fontWeight: 'bold' }}>El objetivo de este capítulo es la identificación de las barreras de acceso a la justicia en el territorio.</Text>
+                </View>
+                <View>
+                    <Text style={{ color: 'red', fontWeight: 'bold' }}>Responder a partir de esta sección considerando la información de todas las sedes de su Establecimiento Educativo</Text>
+                </View>
+                <View>
                     <Text style={globalStyles.Title2}>
                         P22.  Del siguiente listado, a partir de su rol (Rector, Coordinador o líder de convivencia escolar), ¿cuáles considera que son las principales barreras de acceso a la justicia que se le presentan a los estudiantes de su establecimiento educativo?
                     </Text>
